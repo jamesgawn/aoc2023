@@ -3,15 +3,15 @@ package utils
 import (
 	"os"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 func LoadFile(inputFileLocation string) *os.File {
-	log.Info("Using input file: " + inputFileLocation)
+	log.Info().Msg("Using input file: " + inputFileLocation)
 	file, err := os.Open(inputFileLocation)
 	if err != nil {
-		log.Info("I can't solve every problem... not yet anyway")
-		log.Fatal(err)
+		log.Info().Msg("I can't solve every problem... not yet anyway")
+		log.Fatal().Err(err).Send()
 	}
 
 	return file
@@ -20,6 +20,6 @@ func LoadFile(inputFileLocation string) *os.File {
 func CloseFile(file *os.File) {
 	cErr := file.Close()
 	if cErr != nil {
-		log.Fatal(cErr)
+		log.Fatal().Err(cErr).Send()
 	}
 }

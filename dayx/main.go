@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"io"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 func ExecuteSolution(input io.Reader) int {
@@ -12,7 +12,7 @@ func ExecuteSolution(input io.Reader) int {
 	total := 0
 	for scanner.Scan() {
 		text := scanner.Text()
-		log.Info("Parsed text: " + text)
+		log.Debug().Msg("Parsed text: " + text)
 	}
 	return total
 }

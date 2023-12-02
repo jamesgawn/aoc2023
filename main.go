@@ -4,17 +4,22 @@ import (
 	"aoc2023/day1"
 	"aoc2023/day2"
 	"aoc2023/pkg/utils"
+	"flag"
 	"io"
 	"log"
 	"os"
 	"strconv"
 	"time"
 
-	"github.com/sirupsen/logrus"
+	"github.com/rs/zerolog"
 )
 
 func main() {
-	logrus.SetLevel(logrus.ErrorLevel)
+	debug := flag.Bool("debug", false, "sets the log level to debug")
+
+	if *debug {
+		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+	}
 
 	defer utils.TimeTrack(time.Now(), "Total execution")
 	day := "4"

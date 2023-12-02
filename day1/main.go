@@ -8,7 +8,7 @@ import (
 	"strings"
 	"unicode"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 var textDigits = []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
@@ -18,13 +18,13 @@ func ExecuteSolution(input io.Reader) int {
 	total := 0
 	for scanner.Scan() {
 		text := scanner.Text()
-		log.Info("Parsed text: " + text)
+		log.Debug().Msg("Parsed text: " + text)
 
 		numbers := FindNumbers(text)
-		log.Info(numbers)
+		log.Debug().Any("numbers", numbers).Send()
 
 		number := CalculateNumber(numbers)
-		log.Info("Calculated Number: " + strconv.Itoa(number))
+		log.Debug().Msg("Calculated Number: " + strconv.Itoa(number))
 
 		log.Info()
 		total += number
@@ -57,7 +57,7 @@ func CalculateNumber(numbers []string) int {
 	numberString := firstNumber + secondNumber
 	number, err := strconv.Atoi(numberString)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal().Err(err).Send()
 	}
 	return number
 }
@@ -89,7 +89,7 @@ func NormaliseNumber(number string) string {
 	case "nine":
 		return "9"
 	default:
-		log.Fatal("Number not found")
+		log.Fatal().Msg("Digit not found")
 		return "0"
 	}
 }
