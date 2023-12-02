@@ -6,8 +6,19 @@ import (
 	"testing"
 )
 
-func TestValidateWithExample(t *testing.T) {
+func TestValidateWithExample1(t *testing.T) {
 	file := utils.LoadFile("./input_test.txt")
 	result := ExecuteSolution(file)
 	test.EqualsInt(t, 142, result)
+}
+
+func TestValidateWithExample2(t *testing.T) {
+	file := utils.LoadFile("./input_test2.txt")
+	result := ExecuteSolution(file)
+	test.EqualsInt(t, 281, result)
+}
+
+func TestWorksWithRealFile(t *testing.T) {
+	file := utils.LoadFile("./input.txt")
+	ExecuteSolution(file)
 }
