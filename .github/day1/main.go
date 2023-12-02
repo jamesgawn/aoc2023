@@ -3,12 +3,11 @@ package day1
 import (
 	"bufio"
 	"io"
+	"log"
 	"regexp"
 	"strconv"
 	"strings"
 	"unicode"
-
-	log "github.com/sirupsen/logrus"
 )
 
 var textDigits = []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
@@ -18,15 +17,15 @@ func ExecuteSolution(input io.Reader) int {
 	total := 0
 	for scanner.Scan() {
 		text := scanner.Text()
-		log.Info("Parsed text: " + text)
+		log.Println("Parsed text: " + text)
 
 		numbers := FindNumbers(text)
-		log.Info(numbers)
+		log.Println(numbers)
 
 		number := CalculateNumber(numbers)
-		log.Info("Calculated Number: " + strconv.Itoa(number))
+		log.Println("Calculated Number: " + strconv.Itoa(number))
 
-		log.Info()
+		log.Println()
 		total += number
 	}
 	return total

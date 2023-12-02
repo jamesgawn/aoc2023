@@ -2,16 +2,20 @@ package main
 
 import (
 	"aoc2023/day1"
-	"aoc2023/dayx"
+	"aoc2023/day2"
 	"aoc2023/pkg/utils"
 	"io"
 	"log"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
+	logrus.SetLevel(logrus.ErrorLevel)
+
 	defer utils.TimeTrack(time.Now(), "Total execution")
 	day := "4"
 	if len(os.Args) > 1 {
@@ -30,17 +34,15 @@ func main() {
 }
 
 func FindSolution(day string, input io.Reader) {
-	log.Println("Day " + day)
 	var result int
 
 	switch day {
-	case "x":
-		dayx.ExecuteSolution(input)
 	case "1":
 		result = day1.ExecuteSolution(input)
+	case "2":
+		result = day2.ExecuteSolution(input)
 	default:
 		log.Fatal("I can't solve every problem... not yet anyway")
 	}
-
 	log.Println("The answer for day " + day + " is: " + strconv.Itoa(result))
 }

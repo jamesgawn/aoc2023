@@ -1,15 +1,16 @@
 package utils
 
 import (
-	"log"
 	"os"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func LoadFile(inputFileLocation string) *os.File {
-	log.Println("Using input file: " + inputFileLocation)
+	log.Info("Using input file: " + inputFileLocation)
 	file, err := os.Open(inputFileLocation)
 	if err != nil {
-		log.Println("I can't solve every problem... not yet anyway")
+		log.Info("I can't solve every problem... not yet anyway")
 		log.Fatal(err)
 	}
 
