@@ -4,6 +4,6 @@ import (
 	"io"
 )
 
-func ExecuteSolution(input io.Reader) {
-
+func ExecuteSolution(input io.Reader) int {
+	return 1
 }
