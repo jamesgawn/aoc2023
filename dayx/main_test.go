@@ -1,7 +1,7 @@
 package dayx
 
 import (
-	"aoc2022/pkg/test"
+	"aoc2023/pkg/test"
 	"testing"
 )
 

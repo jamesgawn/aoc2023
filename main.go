@@ -1,8 +1,8 @@
 package main
 
 import (
-	"aoc2022/dayx"
-	"aoc2022/pkg/utils"
+	"aoc2023/dayx"
+	"aoc2023/pkg/utils"
 	"io"
 	"log"
 	"os"
@@ -20,19 +20,11 @@ func main() {
 		inputFileLocation = string(os.Args[1])
 	}
 
-	log.Println("Using input file: " + inputFileLocation)
-	file, err := os.Open(inputFileLocation)
-	if err != nil {
-		log.Println("I can't solve every problem... not yet anyway")
-		log.Fatal(err)
-	}
+	file := utils.LoadFile(inputFileLocation)
 
 	FindSolution(day, file)
 
-	cErr := file.Close()
-	if cErr != nil {
-		log.Fatal(cErr)
-	}
+	utils.CloseFile(file)
 }
 
 func FindSolution(day string, input io.Reader) {
