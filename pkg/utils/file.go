@@ -7,7 +7,7 @@ import (
 )
 
 func LoadFile(inputFileLocation string) *os.File {
-	log.Info().Msg("Using input file: " + inputFileLocation)
+	log.Debug().Msg("Using input file: " + inputFileLocation)
 	file, err := os.Open(inputFileLocation)
 	if err != nil {
 		log.Info().Msg("I can't solve every problem... not yet anyway")
