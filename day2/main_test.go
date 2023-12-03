@@ -8,20 +8,20 @@ import (
 
 func TestValidateWithExample1(t *testing.T) {
 	file := utils.LoadFile("./input_test.txt")
-	result := ExecuteSolution(file)
-	test.EqualsInt(t, 8, result)
+	q1Answer, _ := ExecuteSolution(file)
+	test.EqualsInt(t, 8, q1Answer)
 }
 
-// func TestValidateWithExample2(t *testing.T) {
-// 	file := utils.LoadFile("./input_test2.txt")
-// 	result := ExecuteSolution(file)
-// 	test.EqualsInt(t, 281, result)
-// }
+func TestValidateWithExample2(t *testing.T) {
+	file := utils.LoadFile("./input_test.txt")
+	_, q2Answer := ExecuteSolution(file)
+	test.EqualsInt(t, 2286, q2Answer)
+}
 
-// func TestWorksWithRealFile(t *testing.T) {
-// 	file := utils.LoadFile("./input.txt")
-// 	ExecuteSolution(file)
-// }
+func TestWorksWithRealFile(t *testing.T) {
+	file := utils.LoadFile("./input.txt")
+	ExecuteSolution(file)
+}
 
 func TestIsValidCheckWhenValid(t *testing.T) {
 	set := cubeSet{redCubes: 12, blueCubes: 14, greenCubes: 13}

@@ -42,12 +42,18 @@ func main() {
 }
 
 func FindSolution(day string, input io.Reader) {
+	q1Answer := 0
+	q2Answer := 0
+
 	switch day {
 	case "1":
-		day1.ExecuteSolution(input)
+		q2Answer = day1.ExecuteSolution(input)
 	case "2":
-		day2.ExecuteSolution(input)
+		q1Answer, q2Answer = day2.ExecuteSolution(input)
 	default:
 		log.Fatal().Msg("I can't solve every problem... not yet anyway")
 	}
+
+	utils.PrintAnswer(1, 1, q1Answer)
+	utils.PrintAnswer(1, 2, q2Answer)
 }

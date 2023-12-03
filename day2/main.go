@@ -1,7 +1,6 @@
 package day2
 
 import (
-	"aoc2023/pkg/utils"
 	"bufio"
 	"io"
 	"strconv"
@@ -62,10 +61,10 @@ func (game game) IsValidGame(maxRedCubes int, maxBlueCubes int, maxGreenCubes in
 	return true
 }
 
-func ExecuteSolution(input io.Reader) int {
+func ExecuteSolution(input io.Reader) (q1Answer int, q2Answer int) {
 	scanner := bufio.NewScanner(input)
-	q1Answer := 0
-	q2Answer := 0
+	q1Answer = 0
+	q2Answer = 0
 	for scanner.Scan() {
 		text := scanner.Text()
 		log.Debug().Msg("Parsed text: " + text)
@@ -80,11 +79,7 @@ func ExecuteSolution(input io.Reader) int {
 		q2Answer += game.MinCubesRequired().blueCubes * game.MinCubesRequired().redCubes * game.MinCubesRequired().greenCubes
 
 	}
-
-	utils.PrintAnswer(1, 1, q1Answer)
-	utils.PrintAnswer(1, 2, q2Answer)
-
-	return q1Answer
+	return q1Answer, q2Answer
 }
 
 func ParseGame(text string) game {
