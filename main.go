@@ -3,6 +3,7 @@ package main
 import (
 	"aoc2023/day1"
 	"aoc2023/day2"
+	"aoc2023/day3"
 	"aoc2023/pkg/utils"
 	"flag"
 	"io"
@@ -50,6 +51,8 @@ func FindSolution(day string, input io.Reader) {
 		q2Answer = day1.ExecuteSolution(input)
 	case "2":
 		q1Answer, q2Answer = day2.ExecuteSolution(input)
+	case "3":
+		q1Answer, q2Answer = day3.ExecuteSolution(input)
 	default:
 		log.Fatal().Msg("I can't solve every problem... not yet anyway")
 	}

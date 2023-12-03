@@ -18,7 +18,7 @@ func TestValidateWithExample1(t *testing.T) {
 // 	test.EqualsInt(t, 0, q2Answer)
 // }
 
-// func TestWorksWithRealFile(t *testing.T) {
-// 	file := utils.LoadFile("./input.txt")
-// 	ExecuteSolution(file)
-// }
+func TestWorksWithRealFile(t *testing.T) {
+	file := utils.LoadFile("./input.txt")
+	ExecuteSolution(file)
+}
