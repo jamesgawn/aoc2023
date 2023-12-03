@@ -1,6 +1,7 @@
 package day2
 
 import (
+	"aoc2023/pkg/utils"
 	"bufio"
 	"io"
 	"strconv"
@@ -32,6 +33,24 @@ func (game game) CalculateTotalCubes() cubeSet {
 	return cubes
 }
 
+func (game game) MinCubesRequired() cubeSet {
+	minSet := cubeSet{redCubes: 0, blueCubes: 0, greenCubes: 0}
+
+	for _, set := range game.cubes {
+		if set.redCubes > minSet.redCubes {
+			minSet.redCubes = set.redCubes
+		}
+		if set.blueCubes > minSet.blueCubes {
+			minSet.blueCubes = set.blueCubes
+		}
+		if set.greenCubes > minSet.greenCubes {
+			minSet.greenCubes = set.greenCubes
+		}
+	}
+
+	return minSet
+}
+
 func (game game) IsValidGame(maxRedCubes int, maxBlueCubes int, maxGreenCubes int) bool {
 
 	for _, set := range game.cubes {
@@ -41,13 +60,12 @@ func (game game) IsValidGame(maxRedCubes int, maxBlueCubes int, maxGreenCubes in
 	}
 
 	return true
-
-	//return game.CalculateTotalCubes().blueCubes <= maxBlueCubes && game.CalculateTotalCubes().greenCubes <= maxGreenCubes && game.CalculateTotalCubes().redCubes <= maxRedCubes
 }
 
 func ExecuteSolution(input io.Reader) int {
 	scanner := bufio.NewScanner(input)
-	total := 0
+	q1Answer := 0
+	q2Answer := 0
 	for scanner.Scan() {
 		text := scanner.Text()
 		log.Debug().Msg("Parsed text: " + text)
@@ -56,11 +74,17 @@ func ExecuteSolution(input io.Reader) int {
 		LogGame(game)
 
 		if game.IsValidGame(12, 14, 13) {
-			total += game.gameId
+			q1Answer += game.gameId
 		}
 
+		q2Answer += game.MinCubesRequired().blueCubes * game.MinCubesRequired().redCubes * game.MinCubesRequired().greenCubes
+
 	}
-	return total
+
+	utils.PrintAnswer(1, 1, q1Answer)
+	utils.PrintAnswer(1, 2, q2Answer)
+
+	return q1Answer
 }
 
 func ParseGame(text string) game {
@@ -76,9 +100,9 @@ func ParseGame(text string) game {
 
 func LogGame(game game) {
 	log.Debug().Int("gameId", game.gameId).
-		Int("redCubes", game.CalculateTotalCubes().blueCubes).
-		Int("blueCubes", game.CalculateTotalCubes().blueCubes).
-		Int("greenCubes", game.CalculateTotalCubes().greenCubes).
+		Int("redCubes", game.MinCubesRequired().blueCubes).
+		Int("blueCubes", game.MinCubesRequired().blueCubes).
+		Int("greenCubes", game.MinCubesRequired().greenCubes).
 		Bool("valid", game.IsValidGame(12, 14, 13)).
 		Send()
 }

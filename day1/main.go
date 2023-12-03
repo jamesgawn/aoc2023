@@ -1,6 +1,7 @@
 package day1
 
 import (
+	"aoc2023/pkg/utils"
 	"bufio"
 	"io"
 	"regexp"
@@ -29,6 +30,8 @@ func ExecuteSolution(input io.Reader) int {
 		log.Info()
 		total += number
 	}
+	utils.PrintAnswer(1, 2, total)
+
 	return total
 }
 

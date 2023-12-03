@@ -7,7 +7,6 @@ import (
 	"flag"
 	"io"
 	"os"
-	"strconv"
 	"time"
 
 	"github.com/rs/zerolog"
@@ -43,15 +42,12 @@ func main() {
 }
 
 func FindSolution(day string, input io.Reader) {
-	var result int
-
 	switch day {
 	case "1":
-		result = day1.ExecuteSolution(input)
+		day1.ExecuteSolution(input)
 	case "2":
-		result = day2.ExecuteSolution(input)
+		day2.ExecuteSolution(input)
 	default:
 		log.Fatal().Msg("I can't solve every problem... not yet anyway")
 	}
-	log.Info().Msg("The answer for day " + day + " is: " + strconv.Itoa(result))
 }
